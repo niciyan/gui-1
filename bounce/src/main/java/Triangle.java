@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public class Triangle implements Shape{
-    private Point p;
+    private Point center;
     private Velocity v;
     private int side;
     private Color color;
@@ -13,8 +13,8 @@ public class Triangle implements Shape{
 
     public static int DEFAULT_SIDE = 30;
 
-    public Triangle(Point p, Velocity v, int side, Color color) {
-        this.p = p;
+    public Triangle(Point center, Velocity v, int side, Color color) {
+        this.center = center;
         this.v = v;
         this.side = side;
         this.color = color;
@@ -26,7 +26,7 @@ public class Triangle implements Shape{
     }
 
     private void recalculate() {
-        this.poly = createPolygon(p.X(), p.Y(), side, false);
+        this.poly = createPolygon(center.X(), center.Y(), side, false);
     }
 
     protected Polygon createPolygon(int x, int y, int side, boolean inverse){
@@ -35,18 +35,21 @@ public class Triangle implements Shape{
         int yarray[] = new int[num];
 
         double theta = (double) angle / 180 * Math.PI;
-        double sin = Math.sin(theta);
-        double cos = Math.cos(theta);
+        double sin0 = Math.sin(theta);
+        double cos0 = Math.cos(theta);
+        double sin1 = Math.sin(theta + Math.PI * 2 / 3);
+        double cos1 = Math.cos(theta + Math.PI * 2 / 3);
+        double sin2 = Math.sin(theta + Math.PI * 4 / 3);
+        double cos2 = Math.cos(theta + Math.PI * 4 / 3);
 
+        xarray[0] = x+(int)(side*cos0);
+        yarray[0] = y+(int)(side*sin0);
 
-        xarray[0] = x+(int)(side*cos);
-        yarray[0] = y+(int)(side*sin);
+        xarray[1] = x+(int)(side*cos1);
+        yarray[1] = y+(int)(side*sin1);
 
-        xarray[1] = x-(int)(2*side*sin);
-        yarray[1] = y+(int)(2*side*cos);
-
-        xarray[2] = x-(int)(side*cos);
-        yarray[2] = y-(int)(side*sin);
+        xarray[2] = x+(int)(side*cos2);
+        yarray[2] = y+(int)(side*sin2);
 
 //        angle += angleVelocity;
 
@@ -54,20 +57,24 @@ public class Triangle implements Shape{
 
     }
 
-    @Override
-    public Point getPoint() {
-        return p;
+    public void move() {
+        if (center.X() < 0 || center.X() > MainPanel.WIDTH) {
+            v.setX(-1 * v.X());
+        }
+        if (center.Y() < 0 || center.Y() > MainPanel.HEIGHT) {
+            v.setY(-1 * v.Y());
+        }
+        center.update(center.X() + v.X(), center.Y() + v.Y());
     }
 
     @Override
-    public void move() {
-//        if (p.X() < 0 || p.X() > MainPanel.WIDTH - 2 * radius) {
-//            v.setX(-1 * v.X());
-//        }
-//        if (p.Y() < 0 || p.Y() > MainPanel.HEIGHT - 2 * radius) {
-//            v.setY(-1 * v.Y());
-//        }
-//        p.update(p.X()+v.X(), p.Y()+v.Y());
+    public Point getPoint() {
+        return center;
+    }
+
+    @Override
+    public void update() {
+//        move();
         angle += angleVelocity;
         recalculate();
     }

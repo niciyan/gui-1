@@ -4,7 +4,7 @@ public interface Shape {
 
     Point getPoint();
 
-    void move();
+    void update();
 
     void paintComponent(Graphics g);
 }

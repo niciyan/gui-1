@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import javax.swing.JPanel;
 public class MainPanel extends JPanel implements Runnable {
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 600;
-    private static final int SIZE = 10;
+//    private static final int SIZE = 10;
     private List<Shape> shapes;
     private Random rand;
 
@@ -19,37 +18,24 @@ public class MainPanel extends JPanel implements Runnable {
 
     private Thread thread;
 
-    public Point randomPoint(){
-        int x = rand.nextInt(WIDTH - 2 * DEFAULT_RADIUS);
-        int y = rand.nextInt(HEIGHT- 2 * DEFAULT_RADIUS);
-        return new Point(x, y);
-    }
-
-    public Color randomColor() {
-        int r = rand.nextInt(256);
-        int g = rand.nextInt(256);
-        int b = rand.nextInt(256);
-        return new Color(r, g, b);
-    }
-
-    public Velocity randomVelocity() {
-        int vx = rand.nextInt(1)+1;
-        int vy = rand.nextInt(1)+1;
-        if (rand.nextBoolean()) {
-            return new Velocity(-vx, -vy);
-        }
-        return new Velocity(vx, vy);
-    }
-
     public MainPanel() {
         this.rand = new Random();
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         List<Shape> s = new ArrayList<>();
 
-
         for (int i = 0; i < NUM_SHAPES; i++) {
-            s.add(new Ball(randomPoint(), randomVelocity(), DEFAULT_RADIUS, randomColor()));
-            s.add(new Triangle(randomPoint(), randomVelocity(), Triangle.DEFAULT_SIDE, randomColor()));
+            s.add(new Ball(
+                    Utils.randomPoint(WIDTH - 2 * DEFAULT_RADIUS, HEIGHT - 2 * DEFAULT_RADIUS),
+                    Utils.randomVelocity(),
+                    DEFAULT_RADIUS,
+                    Utils.randomColor()
+            ));
+            s.add(new Triangle(
+                    Utils.randomPoint(WIDTH - 2 * DEFAULT_RADIUS, HEIGHT - 2 * DEFAULT_RADIUS),
+                    Utils.randomVelocity(),
+                    Triangle.DEFAULT_SIDE,
+                    Utils.randomColor()
+            ));
         }
 
         shapes = s;
@@ -68,7 +54,7 @@ public class MainPanel extends JPanel implements Runnable {
     public void run() {
         while (true) {
             for (Shape s : shapes) {
-                s.move();
+                s.update();
             }
 
             repaint();
