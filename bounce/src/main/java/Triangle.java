@@ -22,15 +22,12 @@ public class Triangle implements Shape{
         this.angle = 0;
         this.angleVelocity = 1;
 
-        recalculate();
     }
 
-    private void recalculate() {
-        this.poly = createPolygon(center.X(), center.Y(), side, false);
-    }
-
-    protected Polygon createPolygon(int x, int y, int side, boolean inverse){
+    protected Polygon createPolygon(){
         final int num = 3;
+        int x = center.X();
+        int y = center.Y();
         int xarray[] = new int[num];
         int yarray[] = new int[num];
 
@@ -50,8 +47,6 @@ public class Triangle implements Shape{
 
         xarray[2] = x+(int)(side*cos2);
         yarray[2] = y+(int)(side*sin2);
-
-//        angle += angleVelocity;
 
         return new Polygon(xarray, yarray, 3);
 
@@ -74,15 +69,14 @@ public class Triangle implements Shape{
 
     @Override
     public void update() {
-//        move();
+        move();
         angle += angleVelocity;
-        recalculate();
     }
 
     @Override
     public void paintComponent(Graphics g) {
         g.setColor(color);
-        g.fillPolygon(poly);
+        g.fillPolygon(createPolygon());
     }
 
 }

@@ -39,24 +39,33 @@ public class MainPanel extends JPanel implements Runnable {
         }
 
         shapes = s;
+    }
 
+    public void animate() {
         thread = new Thread(this);
         thread.start();
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    public void paintShapes(Graphics g) {
         for (Shape s : shapes) {
             s.paintComponent(g);
         }
     }
 
+    public void updateShapes() {
+        for (Shape s : shapes) {
+            s.update();
+        }
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        paintShapes(g);
+    }
+
     public void run() {
         while (true) {
-            for (Shape s : shapes) {
-                s.update();
-            }
-
+            updateShapes();
             repaint();
 
             try {
