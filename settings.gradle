@@ -1,5 +1,3 @@
 rootProject.name = 'gui-1'
-include 'draw-figure'
-include 'move-ball'
 include 'bounce'
 
