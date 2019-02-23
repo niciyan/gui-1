@@ -26,13 +26,13 @@ public class MainPanel extends JPanel implements Runnable {
         for (int i = 0; i < NUM_SHAPES; i++) {
             s.add(new Ball(
                     Utils.randomPoint(WIDTH - 2 * DEFAULT_RADIUS, HEIGHT - 2 * DEFAULT_RADIUS),
-                    Utils.randomVelocity(),
+                    Utils.randomVelocity(4),
                     DEFAULT_RADIUS,
                     Utils.randomColor()
             ));
             s.add(new Triangle(
                     Utils.randomPoint(WIDTH - 2 * DEFAULT_RADIUS, HEIGHT - 2 * DEFAULT_RADIUS),
-                    Utils.randomVelocity(),
+                    Utils.randomVelocity(4),
                     Triangle.DEFAULT_SIDE,
                     Utils.randomColor()
             ));

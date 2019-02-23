@@ -18,9 +18,9 @@ public class Utils {
         return new Color(r, g, b);
     }
 
-    public static Velocity randomVelocity() {
-        int vx = rand.nextInt(1) + 1;
-        int vy = rand.nextInt(1) + 1;
+    public static Velocity randomVelocity(int max) {
+        int vx = rand.nextInt(max) + 1;
+        int vy = rand.nextInt(max) + 1;
         if (rand.nextBoolean()) {
             return new Velocity(-vx, -vy);
         }
