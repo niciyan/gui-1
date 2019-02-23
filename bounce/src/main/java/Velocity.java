@@ -3,8 +3,8 @@ public class Velocity {
     private int y;
 
     public Velocity(int x, int y) {
-        this.setX(x);
-        this.setY(y);
+        this.x = x;
+        this.y = y;
     }
 
     public int X() {
@@ -15,11 +15,21 @@ public class Velocity {
         return y;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void add(Velocity v) {
+        x += v.X();
+        y += v.Y();
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void reverseX() {
+        x *= -1;
+    }
+
+    public void reverseY() {
+        y *= -1;
+    }
+
+    public void reverse() {
+        reverseX();
+        reverseY();
     }
 }

@@ -50,10 +50,10 @@ public class Triangle implements Shape{
 
     public void move() {
         if (center.X() < 0 || center.X() > MainPanel.WIDTH) {
-            v.setX(-1 * v.X());
+            v.reverseX();
         }
         if (center.Y() < 0 || center.Y() > MainPanel.HEIGHT) {
-            v.setY(-1 * v.Y());
+            v.reverseY();
         }
         center.update(center.X() + v.X(), center.Y() + v.Y());
     }
