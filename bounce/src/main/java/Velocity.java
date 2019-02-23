@@ -7,11 +7,6 @@ public class Velocity {
         this.setY(y);
     }
 
-    public void update(int x, int y) {
-        this.setX(x);
-        this.setY(y);
-    }
-
     public int X() {
         return x;
     }
