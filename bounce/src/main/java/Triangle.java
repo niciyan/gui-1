@@ -9,8 +9,6 @@ public class Triangle implements Shape{
     private int angle;
     private int angleVelocity;
 
-    private Polygon poly;
-
     public static int DEFAULT_SIDE = 30;
 
     public Triangle(Point center, Velocity v, int side, Color color) {
