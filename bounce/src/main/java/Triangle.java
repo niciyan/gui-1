@@ -16,10 +16,8 @@ public class Triangle implements Shape{
         this.v = v;
         this.side = side;
         this.color = color;
-
         this.angle = 0;
         this.angleVelocity = 1;
-
     }
 
     protected Polygon createPolygon(){
