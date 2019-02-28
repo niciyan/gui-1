@@ -15,10 +15,10 @@ public class Ball implements Shape{
     }
 
     public void move() {
-        if (center.X() < 0 || center.X() > MainPanel.WIDTH - 2 * radius) {
+        if (center.X() < 0 || center.X() > AnimationPanel.WIDTH - 2 * radius) {
             v.reverseX();
         }
-        if (center.Y() < 0 || center.Y() > MainPanel.HEIGHT - 2 * radius) {
+        if (center.Y() < 0 || center.Y() > AnimationPanel.HEIGHT - 2 * radius) {
             v.reverseY();
         }
         center.move(v);

@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BoundBallFrame extends JFrame {
-    private MainPanel panel;
+    private AnimationPanel panel;
     private Font font;
     private JSplitPane splitPane;
 
@@ -12,7 +12,7 @@ public class BoundBallFrame extends JFrame {
         setResizable(false);
 
         font = new Font("", Font.PLAIN, 16);
-        panel = new MainPanel();
+        panel = new AnimationPanel();
 
         preparePane();
 

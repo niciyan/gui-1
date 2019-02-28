@@ -1,13 +1,13 @@
 import javax.swing.*;
 
 public class MenuBar extends JMenuBar {
-    private MainPanel panel;
+    private AnimationPanel panel;
 
-    public MenuBar(MainPanel panel) {
+    public MenuBar(AnimationPanel panel) {
         prepare(panel);
     }
 
-    public void prepare(MainPanel panel) {
+    public void prepare(AnimationPanel panel) {
 
         JMenu menu = new JMenu("change motion");
         JMenuItem startAnimation = new JMenuItem("Start animation");

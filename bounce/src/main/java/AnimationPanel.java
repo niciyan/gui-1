@@ -4,7 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
-public class MainPanel extends JPanel implements Runnable {
+public class AnimationPanel extends JPanel implements Runnable {
     public static final int WIDTH = 1800;
     public static final int HEIGHT = 1000;
     private Shapes shapes;
@@ -16,7 +16,7 @@ public class MainPanel extends JPanel implements Runnable {
 
     private Thread thread;
 
-    public MainPanel() {
+    public AnimationPanel() {
         this.rand = new Random();
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         shapes = new Shapes();

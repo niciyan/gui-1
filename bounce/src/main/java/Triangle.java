@@ -49,10 +49,10 @@ public class Triangle implements Shape {
     }
 
     public void move() {
-        if (center.X() < 0 || center.X() > MainPanel.WIDTH) {
+        if (center.X() < 0 || center.X() > AnimationPanel.WIDTH) {
             v.reverseX();
         }
-        if (center.Y() < 0 || center.Y() > MainPanel.HEIGHT) {
+        if (center.Y() < 0 || center.Y() > AnimationPanel.HEIGHT) {
             v.reverseY();
         }
         center.move(v);
