@@ -1,13 +1,14 @@
 import javax.swing.*;
 
 public class MenuBar extends JMenuBar {
-    private AnimationPanel panel;
+    private AnimationPanel animationPanel;
 
-    public MenuBar(AnimationPanel panel) {
-        prepare(panel);
+    public MenuBar(AnimationPanel animationPanel) {
+        this.animationPanel = animationPanel;
+        prepare();
     }
 
-    public void prepare(AnimationPanel panel) {
+    public void prepare() {
 
         JMenu menu = new JMenu("change motion");
         JMenuItem startAnimation = new JMenuItem("Start animation");
@@ -17,12 +18,12 @@ public class MenuBar extends JMenuBar {
         JMenuItem speedUp = new JMenuItem("Speed Up");
         JMenuItem changeColor = new JMenuItem("Change color");
 
-        stop.addActionListener(e -> panel.stop());
-        startAnimation.addActionListener(e -> panel.start());
-        reverse.addActionListener(e -> panel.shapes().reverse());
-        speedDown.addActionListener(e -> panel.shapes().speedDownHalf());
-        speedUp.addActionListener(e -> panel.shapes().speedUp());
-        changeColor.addActionListener(e -> panel.shapes().changeColor());
+        stop.addActionListener(e -> animationPanel.stop());
+        startAnimation.addActionListener(e -> animationPanel.start());
+        reverse.addActionListener(e -> animationPanel.shapes().reverse());
+        speedDown.addActionListener(e -> animationPanel.shapes().speedDownHalf());
+        speedUp.addActionListener(e -> animationPanel.shapes().speedUp());
+        changeColor.addActionListener(e -> animationPanel.shapes().changeColor());
 
         menu.add(stop);
         menu.add(startAnimation);

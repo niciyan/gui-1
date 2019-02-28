@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BoundBallFrame extends JFrame {
-    private AnimationPanel panel;
+    private AnimationPanel animationPanel;
     private Font font;
     private JSplitPane splitPane;
 
@@ -12,11 +12,11 @@ public class BoundBallFrame extends JFrame {
         setResizable(false);
 
         font = new Font("", Font.PLAIN, 16);
-        panel = new AnimationPanel();
+        animationPanel = new AnimationPanel();
 
         preparePane();
 
-        MenuBar menuBar = new MenuBar(panel);
+        MenuBar menuBar = new MenuBar(animationPanel);
 
         setJMenuBar(menuBar);
 
@@ -28,13 +28,13 @@ public class BoundBallFrame extends JFrame {
     private void preparePane() {
         splitPane = new JSplitPane();
 
-        splitPane.setRightComponent(panel);
+        splitPane.setRightComponent(animationPanel);
 
         JPanel leftPanel = new JPanel();
         JButton stop = new JButton("Stop");
-        stop.addActionListener(e -> panel.stop());
+        stop.addActionListener(e -> animationPanel.stop());
         JButton reverse = new JButton("Reverse");
-        reverse.addActionListener(e -> panel.shapes().reverse());
+        reverse.addActionListener(e -> animationPanel.shapes().reverse());
 
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.add(stop);
