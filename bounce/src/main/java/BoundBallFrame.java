@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class BoundBallFrame extends JFrame {
     private AnimationPanel animationPanel;
+    private MoveOperationPanel moveOperationPanel;
     private Font font;
     private JSplitPane splitPane;
 
@@ -11,36 +12,37 @@ public class BoundBallFrame extends JFrame {
 
         setResizable(false);
 
-        font = new Font("", Font.PLAIN, 16);
+        font = new Font("DejaVu Sans Mono", Font.PLAIN, 16);
         animationPanel = new AnimationPanel();
+        moveOperationPanel = new MoveOperationPanel(animationPanel);
 
         preparePane();
 
         MenuBar menuBar = new MenuBar(animationPanel);
 
         setJMenuBar(menuBar);
+        changeFont(menuBar, font);
 
         getContentPane().add(splitPane);
+        changeFont(splitPane, font);
 
         pack();
     }
 
     private void preparePane() {
         splitPane = new JSplitPane();
-
         splitPane.setRightComponent(animationPanel);
+        splitPane.setLeftComponent(moveOperationPanel);
+    }
 
-        JPanel leftPanel = new JPanel();
-        JButton stop = new JButton("Stop");
-        stop.addActionListener(e -> animationPanel.stop());
-        JButton reverse = new JButton("Reverse");
-        reverse.addActionListener(e -> animationPanel.shapes().reverse());
-
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.add(stop);
-        leftPanel.add(reverse);
-
-        splitPane.setLeftComponent(leftPanel);
+    // see https://stackoverflow.com/a/12731354/9814424
+    private void changeFont(Component component, Font font) {
+        component.setFont(font);
+        if (component instanceof Container) {
+            for (Component child : ((Container) component).getComponents()) {
+                changeFont(child, font);
+            }
+        }
     }
 
 }
