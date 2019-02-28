@@ -5,6 +5,5 @@ public class Main {
         BoundBallFrame frame = new BoundBallFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.animate();
     }
 }

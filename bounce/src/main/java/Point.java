@@ -7,9 +7,9 @@ public class Point {
         this.y = y;
     }
 
-    public void update(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public void move(Velocity v) {
+        x += v.X();
+        y += v.Y();
     }
 
     public int X() {

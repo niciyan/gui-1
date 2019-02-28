@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Triangle implements Shape{
+public class Triangle implements Shape {
     private Point center;
     private Velocity v;
     private int side;
@@ -20,7 +20,7 @@ public class Triangle implements Shape{
         this.angleVelocity = 1;
     }
 
-    protected Polygon createPolygon(){
+    protected Polygon createPolygon() {
         final int num = 3;
         int x = center.X();
         int y = center.Y();
@@ -35,14 +35,14 @@ public class Triangle implements Shape{
         double sin2 = Math.sin(theta + Math.PI * 4 / 3);
         double cos2 = Math.cos(theta + Math.PI * 4 / 3);
 
-        xarray[0] = x+(int)(side*cos0);
-        yarray[0] = y+(int)(side*sin0);
+        xarray[0] = x + (int) (side * cos0);
+        yarray[0] = y + (int) (side * sin0);
 
-        xarray[1] = x+(int)(side*cos1);
-        yarray[1] = y+(int)(side*sin1);
+        xarray[1] = x + (int) (side * cos1);
+        yarray[1] = y + (int) (side * sin1);
 
-        xarray[2] = x+(int)(side*cos2);
-        yarray[2] = y+(int)(side*sin2);
+        xarray[2] = x + (int) (side * cos2);
+        yarray[2] = y + (int) (side * sin2);
 
         return new Polygon(xarray, yarray, 3);
 
@@ -55,12 +55,12 @@ public class Triangle implements Shape{
         if (center.Y() < 0 || center.Y() > MainPanel.HEIGHT) {
             v.reverseY();
         }
-        center.update(center.X() + v.X(), center.Y() + v.Y());
+        center.move(v);
     }
 
     @Override
-    public Point getPoint() {
-        return center;
+    public Velocity v() {
+        return v;
     }
 
     @Override
@@ -75,4 +75,8 @@ public class Triangle implements Shape{
         g.fillPolygon(createPolygon());
     }
 
+    @Override
+    public void changeColor(Color color) {
+        this.color = color;
+    }
 }

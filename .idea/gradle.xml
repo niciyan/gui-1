@@ -9,8 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/bounce" />
-            <option value="$PROJECT_DIR$/draw-figure" />
-            <option value="$PROJECT_DIR$/move-ball" />
           </set>
         </option>
         <option name="useAutoImport" value="true" />

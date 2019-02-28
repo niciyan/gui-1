@@ -1,6 +1,7 @@
 import java.awt.*;
 
 public class Ball implements Shape{
+    public static final int DEFAULT_RADIUS = 30;
     private Point center;
     private Velocity v;
     private int radius;
@@ -20,7 +21,7 @@ public class Ball implements Shape{
         if (center.Y() < 0 || center.Y() > MainPanel.HEIGHT - 2 * radius) {
             v.reverseY();
         }
-        center.update(center.X()+v.X(), center.Y()+v.Y());
+        center.move(v);
     }
 
     @Override
@@ -35,7 +36,13 @@ public class Ball implements Shape{
     }
 
     @Override
-    public Point getPoint(){
-        return this.center;
+    public Velocity v() {
+        return v;
     }
+
+    @Override
+    public void changeColor(Color color) {
+        this.color = color;
+    }
+
 }

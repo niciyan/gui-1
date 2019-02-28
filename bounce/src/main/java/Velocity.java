@@ -32,4 +32,27 @@ public class Velocity {
         reverseX();
         reverseY();
     }
+
+    public void stop() {
+        x = 0;
+        y = 0;
+    }
+
+    public void speedDownHalf() {
+        x /= 2;
+        y /= 2;
+    }
+
+    public void speedUp() {
+        if (x == 0) {
+            x += 1;
+        } else {
+            x *= 2;
+        }
+        if (y == 0) {
+            y += 1;
+        } else {
+            y *= 2;
+        }
+    }
 }
