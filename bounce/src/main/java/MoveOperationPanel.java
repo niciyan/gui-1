@@ -23,7 +23,7 @@ public class MoveOperationPanel extends JPanel {
         reverse.addActionListener(e -> animationPanel.shapes().reverse());
         speedUp.addActionListener(e -> animationPanel.shapes().speedUp());
         speedDown.addActionListener(e -> animationPanel.shapes().speedDownHalf());
-        changeColor.addActionListener(e -> animationPanel.shapes().changeColor());
+        changeColor.addActionListener(e -> animationPanel.changeColor());
 
         add(start);
         add(stop);

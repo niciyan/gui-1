@@ -20,7 +20,10 @@ public class AnimationPanel extends JPanel implements Runnable {
         this.rand = new Random();
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         shapes = new Shapes();
+        thread = new Thread(this);
+        running = false;
         prepare();
+        thread.start();
     }
 
     private void prepare() {
@@ -69,8 +72,10 @@ public class AnimationPanel extends JPanel implements Runnable {
     }
 
     public void start() {
-        thread = new Thread(this);
-        thread.start();
+        if (thread == null || !running) {
+            thread = new Thread(this);
+            thread.start();
+        }
     }
 
     public void stop() {
@@ -80,6 +85,11 @@ public class AnimationPanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         shapes.paint(g);
+    }
+
+    public void changeColor() {
+        shapes.changeColor();
+        repaint();
     }
 
     public void run() {
